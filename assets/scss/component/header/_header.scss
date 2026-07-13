@@ -73,6 +73,18 @@ header {
 }
 
 
+// AXON MOBILE brand logo (stacked lockup) sizing — overrides inline width/height attrs
+.logo-site img {
+    height: 58px;
+    width: auto;
+    max-width: 200px;
+
+    @media (max-width: 1199px) {
+        height: 48px;
+        max-width: 170px;
+    }
+}
+
 .tf-header {
 
     .box-open-menu-mobile {

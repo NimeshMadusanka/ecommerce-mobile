@@ -1218,6 +1218,19 @@
     /* Select Category
     -------------------------------------------------------------------------*/
     var customSelectCate = function () {
+        // AXON: when the JSON catalog is present, populate the category dropdown
+        // from window.CATALOG so it lists the store's real categories.
+        var useCatalog = !!(window.CATALOG && window.CATALOG.categories && window.CATALOG.categories.length);
+        if (useCatalog) {
+            $("select#product_cate").each(function () {
+                var opts = '<option value="" selected="selected">All Categories</option>';
+                window.CATALOG.categories.forEach(function (c) {
+                    opts += '<option value="' + c.slug + '">' + c.name + '</option>';
+                });
+                $(this).html(opts);
+            });
+        }
+
         $("select#product_cate").each(function () {
             var $this = $(this),
                 selectOptions = $(this).children("option").length;
@@ -1232,9 +1245,15 @@
                 var value = $this.children("option").eq(i).val();
                 var text = $this.children("option").eq(i).text();
 
-                var link = (value === "all")
-                    ? "collection.html"
-                    : "shop-default.html";
+                // AXON: category click goes to the product page, filtered by slug.
+                var link;
+                if (useCatalog) {
+                    link = value
+                        ? "shop-default.html?category=" + encodeURIComponent(value)
+                        : "shop-default.html";
+                } else {
+                    link = (value === "all") ? "collection.html" : "shop-default.html";
+                }
 
                 var $li = $("<li />", {
                     "data-value": value
@@ -1260,7 +1279,7 @@
             $optionlistItems.on("click", function (e) {
                 e.stopPropagation();
                 $customSelect.text($(this).text()).removeClass("active");
-                $this.val($(this).attr("rel"));
+                $this.val($(this).attr("data-value"));
                 $optionlist.hide();
             });
             $(document).on("click", function () {
