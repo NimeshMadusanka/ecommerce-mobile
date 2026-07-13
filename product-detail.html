@@ -7,11 +7,11 @@
 
 <head>
     <meta charset="utf-8">
-    <title>AXON MOBILE - Multipurpose eCommerce HTML Template</title>
+    <title>AXON MOBILE - Product</title>
     <meta name="author" content="AXON MOBILE">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="description"
-        content="AXON MOBILE - A modern and elegant Multipurpose eCommerce HTML Template, perfect for online stores selling rings, necklaces, watches, and other accessories. SEO-optimized, fast-loading, and fully customizable.">
+        content="AXON MOBILE - Product detail.">
 
     <!-- font -->
     <link rel="stylesheet" href="assets/fonts/fonts.css">
@@ -20,195 +20,711 @@
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
     <link rel="stylesheet" href="assets/css/animate.css">
-    <link rel="stylesheet" href="assets/css/drift-basic.min.css">
-    <link rel="stylesheet" href="assets/css/photoswipe.css">
     <link rel="stylesheet" type="text/css" href="assets/css/styles.css">
 
     <!-- Favicon and Touch Icons  -->
     <link rel="shortcut icon" href="assets/images/logo/favicon.svg">
     <link rel="apple-touch-icon-precomposed" href="assets/images/logo/favicon.svg">
 </head>
-<!-- PRODUCT CARD -->
- <body>
-<div class="container" style="padding:80px 0;">
 
-    <div class="row align-items-center">
+<body>
+    <main id="wrapper">
 
-        <div class="col-lg-6">
+        <!-- Header -->
+                <div id="site-header"></div>
+    <script src="assets/js/site-header.js"></script>
+        <!-- /Header -->
 
-            <img id="detail-image"
-                 src=""
-                 alt="Product"
+        <!-- Product Detail -->
+        <section class="flat-spacing" style="padding:60px 0;">
+            <div class="container">
 
-                 style="
-                    width:100%;
-                    height:500px;
-                    object-fit:cover;
-                    border-radius:12px;
-                    background:#f5f5f5;
-                 ">
-
-        </div>
-
-        <div class="col-lg-6">
-
-            <div style="padding-left:40px;">
-
-                <h1 id="detail-name"
-
-                    style="
-                        font-size:32px;
-                        font-weight:600;
-                        line-height:42px;
-                        margin-bottom:20px;
-                    ">
-                </h1>
-
-                <div id="detail-price"
-
-                     style="
-                        font-size:28px;
-                        font-weight:700;
-                        color:#0d6efd;
-                        margin-bottom:25px;
-                     ">
+                <div id="detail-notfound" style="display:none; text-align:center; padding:90px 0;">
+                    <h2 class="fw-semibold" style="margin-bottom:14px;">Product not found</h2>
+                    <p class="cl-text-2 mb-4">We couldn't find that product. It may have been removed.</p>
+                    <a href="shop-default.html" class="tf-btn btn-fill" style="height:50px; padding:0 30px; border-radius:8px; display:inline-flex; align-items:center;">Back to Shop</a>
                 </div>
 
-                <p style="
-                    font-size:15px;
-                    line-height:28px;
-                    color:#666;
-                    margin-bottom:30px;
-                ">
-
-                    Premium quality product with modern design,
-                    advanced performance and comfortable usage experience.
-
-                </p>
-
-                <a href="#shoppingCart"
-                   data-bs-toggle="offcanvas"
-
-                   class="tf-btn btn-fill"
-
-                   id="detail-add-cart"
-
-                   style="
-                        height:52px;
-                        padding:0 35px;
-                        border-radius:8px;
-                        font-size:16px;
-                        font-weight:600;
-                        display:inline-flex;
-                        align-items:center;
-                        justify-content:center;
-                   ">
-
-                    Add To Cart
-
-                </a>
+                <div id="detail-wrap" class="row align-items-center" style="display:none;">
+                    <div class="col-lg-6 mb-4 mb-lg-0">
+                        <div class="product-img" style="border-radius:14px; overflow:hidden; background:#f5f5f5;">
+                            <img id="detail-image" src="" alt="Product" style="width:100%; height:540px; object-fit:cover; display:block;">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="ps-lg-4">
+                            <div class="text-caption-01 cl-text-2 mb-3">
+                                <a href="index.html" class="link">Home</a> &nbsp;/&nbsp;
+                                <a href="shop-default.html" class="link">Shop</a> &nbsp;/&nbsp;
+                                <span id="detail-crumb"></span>
+                            </div>
+                            <h1 id="detail-name" class="fw-semibold" style="font-size:30px; line-height:40px; margin-bottom:14px;"></h1>
+                            <div id="detail-stars" class="star-wrap d-flex align-items-center mb-3" style="gap:2px; color:#f4b400;"></div>
+                            <div class="d-flex align-items-baseline mb-3" style="gap:14px;">
+                                <div id="detail-price" class="fw-bold text-primary" style="font-size:26px;"></div>
+                                <div id="detail-old-price" class="text-caption-01" style="text-decoration:line-through; color:#999; font-size:18px;"></div>
+                            </div>
+                            <p id="detail-desc" style="font-size:15px; line-height:28px; color:#666; margin-bottom:22px;"></p>
+                            <div class="d-flex align-items-center mb-4" style="gap:16px;">
+                                <div class="wg-quantity" style="display:inline-flex; align-items:center; border:1px solid #e5e5e5; border-radius:8px; overflow:hidden;">
+                                    <button type="button" id="detail-qty-minus" aria-label="Decrease" style="width:44px; height:50px; border:0; background:#fff; font-size:20px; cursor:pointer;">-</button>
+                                    <input type="text" id="detail-qty" value="1" inputmode="numeric" style="width:54px; height:50px; text-align:center; border:0; border-left:1px solid #e5e5e5; border-right:1px solid #e5e5e5;">
+                                    <button type="button" id="detail-qty-plus" aria-label="Increase" style="width:44px; height:50px; border:0; background:#fff; font-size:20px; cursor:pointer;">+</button>
+                                </div>
+                                <span id="detail-availability" class="text-caption-01 cl-text-2"></span>
+                            </div>
+                            <div class="d-flex flex-wrap" style="gap:14px;">
+                                <a href="#shoppingCart" data-bs-toggle="offcanvas" id="detail-add-cart" class="tf-btn btn-fill"
+                                   style="height:54px; padding:0 34px; border-radius:8px; font-weight:600; display:inline-flex; align-items:center; justify-content:center;">
+                                    Add To Cart
+                                </a>
+                                <button type="button" id="detail-buy-now" class="tf-btn btn-outline-dark"
+                                   style="height:54px; padding:0 34px; border-radius:8px; font-weight:600; background:#101010; color:#fff; border:0; cursor:pointer;">
+                                    Buy Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
             </div>
+        </section>
+        <!-- /Product Detail -->
 
+
+        <footer class="tf-footer">
+            <div class="footer-inner flat-spacing position-relative">
+                <div class="br-line fake-class top-0"></div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6 col-lg-4">
+                            <div class="footer-infor d-flex flex-column align-items-start mb-lg-0">
+                                <a href="index.html" class="logo-site mb-16">
+                                    <img loading="lazy" width="150" height="30" src="assets/images/logo/logo.svg"
+                                        alt="Image">
+                                </a>
+                                <p class="lh-26 cl-text-2">
+                                    600 N Michigan Ave, Chicago, IL 60611, USA
+                                </p>
+                                <a href="https://www.google.com/maps?q=600+N+Michigan+Ave+Chicago,+IL+60611+USA"
+                                    target="_blank" class="text-decoration-underline text-primary lh-26 mb-16">
+                                    Open in Maps
+                                </a>
+                                <a href="mailto:hi.amere@gmail.com" class="cl-text-2 link mb-8">
+                                    hi.amere@gmail.com
+                                </a>
+                                <a href="tel:3156666688" class="cl-text-2 link mb-16">
+                                    315-666-6688
+                                </a>
+                                <ul class="tf-social-icon-2">
+                                    <li>
+                                        <a href="https://www.facebook.com/" target="_blank">
+                                            <i class="icon icon-FacebookLogo"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://x.com/" target="_blank">
+                                            <i class="icon icon-XLogo"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.instagram.com/" target="_blank">
+                                            <i class="icon icon-InstagramLogo"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.tiktok.com/" target="_blank">
+                                            <i class="icon icon-TiktokLogo"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.snapchat.com/" target="_blank">
+                                            <i class="icon icon-SnapchatLogo"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-2">
+                            <div class="footer-col-block footer-wrap-1 mx-xl-auto">
+                                <p class="footer-heading footer-heading-mobile">COMPANY</p>
+                                <div class="tf-collapse-content">
+                                    <ul class="footer-menu-list">
+                                        <li><a href="about.html" class="cl-text-2 link">About Us</a></li>
+                                        <li><a href="contact.html" class="cl-text-2 link">Contact Us</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-2">
+                            <div class="footer-col-block footer-wrap-2 mx-xl-auto">
+                                <p class="footer-heading footer-heading-mobile">CUSTOMER</p>
+                                <div class="tf-collapse-content">
+                                    <ul class="footer-menu-list">
+                                        <li><a href="privacy-policy.html" class="cl-text-2 link">Privacy Policy</a></li>
+                                        <li><a href="term-and-condition.html" class="cl-text-2 link">Terms & Conditions</a></li>
+                                        <li><a href="wishlist.html" class="cl-text-2 link">Wishlist</a></li>
+                                        <li><a href="view-cart.html" class="cl-text-2 link">View Cart</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4">
+                            <div class="footer-col-block footer-wrap-3 mb-0">
+                                <p class="footer-heading footer-heading-mobile">NEWSLETTER</p>
+                                <div class="tf-collapse-content">
+                                    <p class="footer-desc cl-text-2">
+                                        Subscribe for store updates and discounts.
+                                    </p>
+                                    <form class="form-sub">
+                                        <fieldset>
+                                            <input type="email" placeholder="Enter your e-mail" required>
+                                        </fieldset>
+                                        <button type="submit" class="btn-action">
+                                            <i class="icon icon-ArrowUpRight"></i>
+                                        </button>
+                                    </form>
+                                    <p class="text-remember cl-text-2">
+                                        By clicking subcribe, you agree to the
+                                        <a href="term-and-condition.html" class="text-main link link-underline">
+                                            Terms of Service
+                                        </a>
+                                        and
+                                        <a href="privacy-policy.html" class="text-main link link-underline">
+                                            Privacy Policy
+                                        </a>.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="container">
+                    <div class="br-line"></div>
+                    <div class="inner-bottom">
+                        <p class="text-nocopy cl-text-2 me-auto text-start">
+                            ©2026 AXON MOBILE. All Rights Reserved.
+                        </p>
+                        <ul class="tf-list payment-list">
+                            <li><img loading="lazy" width="38" height="24" src="assets/images/payment/visa.svg"
+                                    alt="Image"></li>
+                            <li><img loading="lazy" width="38" height="24" src="assets/images/payment/master-card.svg"
+                                    alt="Image"></li>
+                            <li><img loading="lazy" width="38" height="24" src="assets/images/payment/amex.svg"
+                                    alt="Image"></li>
+                            <li><img loading="lazy" width="38" height="24" src="assets/images/payment/paypal.svg"
+                                    alt="Image"></li>
+                            <li><img loading="lazy" width="38" height="24" src="assets/images/payment/water.svg"
+                                    alt="Image"></li>
+                            <li><img loading="lazy" width="38" height="24" src="assets/images/payment/discover.svg"
+                                    alt="Image"></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+    </main>
+
+<div class="offcanvas offcanvas-start canvas-mb" id="mobileMenu">
+        <div class="canvas-header">
+            <span class="icon-close-popup" data-bs-dismiss="offcanvas">
+                <i class="icon icon-X2"></i>
+            </span>
+            <form class="form-search-nav">
+                <fieldset>
+                    <input type="text" placeholder="What are you looking for?" required>
+                </fieldset>
+                <button type="submit" class="btn-action">
+                    <i class="icon icon-MagnifyingGlass"></i>
+                </button>
+            </form>
+        </div>
+        <div class="canvas-body">
+            <div class="mb-content-top">
+                <ul class="nav-ul-mb" id="wrapper-menu-navigation"></ul>
+            </div>
+            <div class="need-help-wrap">
+                <p class="nd-title h6 fw-medium mb-16">Need Help?</p>
+                <p class="lh-26 cl-text-2 mb-4">
+                    600 N Michigan Ave, Chicago, IL 60611, USA
+                </p>
+                <a href="https://www.google.com/maps?q=600+N+Michigan+Ave+Chicago,+IL+60611+USA" target="_blank"
+                    class="text-decoration-underline text-primary lh-26 mb-16">
+                    Open in Maps
+                </a>
+                <a href="mailto:hi.amere@gmail.com" class="cl-text-2 link mb-8">
+                    hi.amere@gmail.com
+                </a>
+                <a href="tel:3156666688" class="cl-text-2 link">
+                    315-666-6688
+                </a>
+            </div>
+        </div>
+        <div class="canvas-footer">
+            <div class="d-flex justify-content-center border-end">
+                <div class="tf-currencies">
+                    <select class="tf-dropdown-select style-default type-currencies">
+                        <option selected data-thumbnail="assets/images/country/us.png">(USD $)</option>
+                        <option data-thumbnail="assets/images/country/vn.png">(VND ₫)</option>
+                    </select>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center">
+                <div class="tf-languages">
+                    <select class="tf-dropdown-select style-default type-languages">
+                        <option>English</option>
+                        <option>العربية</option>
+                        <option>简体中文</option>
+                        <option>اردو</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal modalCentered fade modal-search" id="search">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="d-flex align-items-center justify-content-between gap-10">
+                    <h3>
+                        Search
+                    </h3>
+                    <span class="icon-close-popup flex-shrink-0" data-bs-dismiss="modal">
+                        <i class="icon-X2"></i>
+                    </span>
+                </div>
+                <form action="search-result.html" class="form-search-nav style-2">
+                    <fieldset>
+                        <input type="text" placeholder="Searching..." required>
+                    </fieldset>
+                    <button type="submit" class="btn-action">
+                        <i class="icon icon-MagnifyingGlass"></i>
+                    </button>
+                </form>
+                <div class="search-feature">
+                    <p class="h5 mb-16">Feature Keywords Today</p>
+                    <div class="tf-list-tag">
+                        <a href="#" class="link-tag">Dresses</a>
+                        <a href="#" class="link-tag">Dresses women</a>
+                        <a href="#" class="link-tag">Dresses midi</a>
+                        <a href="#" class="link-tag">Dress summer</a>
+                    </div>
+                </div>
+                <div class="recently-view">
+                    <p class="h5 mb-16">Recently Viewed Products</p>
+                    <div dir="ltr" class="swiper tf-swiper mb-24" data-preview="4" data-tablet="3" data-mobile-sm="2"
+                        data-mobile="2" data-space-lg="30" data-space-md="20" data-space="10" data-pagination="2"
+                        data-pagination-sm="2" data-pagination-md="3" data-pagination-lg="4">
+                        <div class="swiper-wrapper">
+                            <!-- slide 1 -->
+                            <div class="swiper-slide">
+                                <div class="card-product">
+                                    <div class="card-product_wrapper">
+                                        <a href="product-detail.html" class="product-img">
+                                            <img class="img-product" loading="lazy" width="330" height="440"
+                                                src="assets/images/product/product-1.jpg" alt="Product">
+                                            <img class="img-hover" loading="lazy" width="330" height="440"
+                                                src="assets/images/product/product-1_2.jpg" alt="Product">
+                                        </a>
+                                        <ul class="product-action_list">
+                                            <li class="wishlist">
+                                                <a href="#;" class="hover-tooltip tooltip-left box-icon">
+                                                    <span class="icon icon-heart"></span>
+                                                    <span class="tooltip">Add to Wishlist</span>
+                                                </a>
+                                            </li>
+                                            
+                                            
+                                        </ul>
+                                        <ul class="product-badge_list">
+                                            <li class="product-badge_item text-caption-01 new">NEW</li>
+                                        </ul>
+                                        <div class="product-action_bot">
+                                         <a href="#shoppingCart"
+   data-bs-toggle="offcanvas"
+   class="tf-btn btn-white small w-100 add-to-cart-btn"
+   data-product="iphone17">
+   Add to Cart
+</a>
+                                        </div>
+                                        <div class="product-marquee_sale">
+                                            <div class="marquee-wrapper">
+                                              
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-product_info">
+                                        <a href="product-detail.html"
+                                            class="name-product lh-24 fw-medium link-underline-text">
+                                           Apple Iphone
+                                        </a>
+                                        <div class="star-wrap d-flex align-items-center">
+                                            <i class="icon icon-Star"></i>
+                                            <i class="icon icon-Star"></i>
+                                            <i class="icon icon-Star"></i>
+                                            <i class="icon icon-Star"></i>
+                                            <i class="icon icon-Star"></i>
+                                        </div>
+                                        <div class="price-wrap">
+                                            <span class="price-new text-primary fw-semibold" data-product="iphone17"></span>
+                                        </div>
+                                        <ul class="product-color_list">
+                                            <li
+                                                class="product-color-item color-swatch hover-tooltip tooltip-bot active">
+                                                <span class="tooltip color-filter">Gray</span>
+                                                <span class="swatch-value bg-rose-taupe"></span>
+                                                <img src="assets/images/product/product-1.jpg"
+                                                    data-src="assets/images/product/product-1.jpg" alt="Image">
+                                            </li>
+                                            <li class="product-color-item color-swatch hover-tooltip tooltip-bot">
+                                                <span class="tooltip color-filter">Purple</span>
+                                                <span class="swatch-value bg-warm-beige"></span>
+                                                <img src="assets/images/product/product-1_3.jpg"
+                                                    data-src="assets/images/product/product-1_3.jpg" alt="Image">
+                                            </li>
+                                            <li class="product-color-item color-swatch hover-tooltip tooltip-bot">
+                                                <span class="tooltip color-filter">White</span>
+                                                <span class="swatch-value bg-white"></span>
+                                                <img src="assets/images/product/product-1_4.jpg"
+                                                    data-src="assets/images/product/product-1_4.jpg" alt="Image">
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- slide 2 -->
+                            <div class="swiper-slide">
+                                <div class="card-product">
+                                    <div class="card-product_wrapper">
+                                        <a href="product-detail.html" class="product-img">
+                                            <img class="img-product" loading="lazy" width="330" height="440"
+                                                src="assets/images/product/electronics/product-2.jpg" alt="Product">
+                                            <img class="img-hover" loading="lazy" width="330" height="440"
+                                                src="assets/images/product/electronics/product-2.jpg" alt="Product">
+                                        </a>
+                                        <ul class="product-action_list">
+                                            <li class="wishlist">
+                                                <a href="#;" class="hover-tooltip tooltip-left box-icon">
+                                                    <span class="icon icon-heart"></span>
+                                                    <span class="tooltip">Add to Wishlist</span>
+                                                </a>
+                                            </li>
+                                            
+                                            
+                                        </ul>
+                                        <ul class="product-badge_list">
+                                            <li class="product-badge_item text-caption-01 sale">-25%</li>
+                                        </ul>
+                                        <div class="product-action_bot">
+                                           <a href="#shoppingCart"
+   data-bs-toggle="offcanvas"
+   class="tf-btn btn-white small w-100 add-to-cart-btn"
+   data-product="watch10">
+   Add to Cart
+</a>
+                                        </div>
+                                    </div>
+                                    <div class="card-product_info">
+                                        <a href="product-detail.html"
+                                            class="name-product lh-24 fw-medium link-underline-text">
+                                           Apple watch Series
+                                        </a>
+                                        <div class="star-wrap d-flex align-items-center">
+                                            <i class="icon icon-Star"></i>
+                                            <i class="icon icon-Star"></i>
+                                            <i class="icon icon-Star"></i>
+                                            <i class="icon icon-Star"></i>
+                                            <i class="icon icon-Star"></i>
+                                        </div>
+                                        <div class="price-wrap">
+                                             <span class="price-new text-primary fw-semibold" data-product="watch10"></span>
+                                        </div>
+                                        <ul class="product-color_list">
+                                            <li
+                                                class="product-color-item color-swatch hover-tooltip tooltip-bot active">
+                                                <span class="tooltip color-filter">Red</span>
+                                                <span class="swatch-value bg-rose-taupe"></span>
+                                                <img src="assets/images/product/product-2.jpg"
+                                                    data-src="assets/images/product/product-2.jpg" alt="Image">
+                                            </li>
+                                            <li class="product-color-item color-swatch hover-tooltip tooltip-bot">
+                                                <span class="tooltip color-filter">Gray</span>
+                                                <span class="swatch-value bg-warm-beige"></span>
+                                                <img src="assets/images/product/product-2_3.jpg"
+                                                    data-src="assets/images/product/product-2_3.jpg" alt="Image">
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- slide 3 -->
+                            <div class="swiper-slide">
+                                <div class="card-product">
+                                    <div class="card-product_wrapper">
+                                        <a href="product-detail.html" class="product-img">
+                                            <img class="img-product" loading="lazy" width="330" height="440"
+                                                src="assets/images/product/product-3.jpg" alt="Product">
+                                            <img class="img-hover" loading="lazy" width="330" height="440"
+                                                src="assets/images/product/product-3_2.jpg" alt="Product">
+                                        </a>
+                                        <ul class="product-action_list">
+                                            <li class="wishlist">
+                                                <a href="#;" class="hover-tooltip tooltip-left box-icon">
+                                                    <span class="icon icon-heart"></span>
+                                                    <span class="tooltip">Add to Wishlist</span>
+                                                </a>
+                                            </li>
+                                            
+                                            
+                                        </ul>
+                                      
+                                        <div class="product-action_bot">
+                                          <a href="#shoppingCart"
+   data-bs-toggle="offcanvas"
+   class="tf-btn btn-white small w-100 add-to-cart-btn"
+   data-product="mc100">
+   Add to Cart
+</a>
+                                        </div>
+                                    </div>
+                                    <div class="card-product_info">
+                                        <a href="product-detail.html"
+                                            class="name-product lh-24 fw-medium link-underline-text">
+                                          wireless charge pad
+                                        </a>
+                                        <div class="star-wrap d-flex align-items-center">
+                                            <i class="icon icon-Star"></i>
+                                            <i class="icon icon-Star"></i>
+                                            <i class="icon icon-Star"></i>
+                                            <i class="icon icon-Star"></i>
+                                            <i class="icon icon-Star"></i>
+                                        </div>
+                                        <div class="price-wrap">
+                                             <span class="price-new text-primary fw-semibold" data-product="mc100"></span>
+                                        </div>
+                                        <ul class="product-color_list">
+                                            <li
+                                                class="product-color-item color-swatch hover-tooltip tooltip-bot active">
+                                                <span class="tooltip color-filter">Pink</span>
+                                                <span class="swatch-value bg-rose-taupe"></span>
+                                                <img src="assets/images/product/product-3.jpg"
+                                                    data-src="assets/images/product/product-3.jpg" alt="Image">
+                                            </li>
+                                            <li class="product-color-item color-swatch hover-tooltip tooltip-bot">
+                                                <span class="tooltip color-filter">Red</span>
+                                                <span class="swatch-value bg-warm-beige"></span>
+                                                <img src="assets/images/product/product-3_3.jpg"
+                                                    data-src="assets/images/product/product-3_3.jpg" alt="Image">
+                                            </li>
+                                            <li class="product-color-item color-swatch hover-tooltip tooltip-bot">
+                                                <span class="tooltip color-filter">Red</span>
+                                                <span class="swatch-value bg-warm-beige"></span>
+                                                <img src="assets/images/product/product-3_4.jpg"
+                                                    data-src="assets/images/product/product-3_4.jpg" alt="Image">
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- slide 4 -->
+                            <div class="swiper-slide">
+                                <div class="card-product">
+                                    <div class="card-product_wrapper">
+                                        <a href="product-detail.html" class="product-img">
+                                            <img class="img-product" loading="lazy" width="330" height="440"
+                                                src="assets/images/product/product-4.jpg" alt="Product">
+                                            <img class="img-hover" loading="lazy" width="330" height="440"
+                                                src="assets/images/product/product-4_2.jpg" alt="Product">
+                                        </a>
+                                        <ul class="product-action_list">
+                                            <li class="wishlist">
+                                                <a href="#;" class="hover-tooltip tooltip-left box-icon">
+                                                    <span class="icon icon-heart"></span>
+                                                    <span class="tooltip">Add to Wishlist</span>
+                                                </a>
+                                            </li>
+                                            
+                                            
+                                        </ul>
+                                        <div class="product-action_bot">
+                                            <a href="#shoppingCart" data-bs-toggle="offcanvas"
+                                                class="tf-btn btn-white small  w-100">
+                                                Add to cart
+                                            </a>
+                                        </div>
+                                        <div class="product-countdown">
+                                            <div class="js-countdown cd-has-zero" data-timer="1093120"
+                                                data-labels="D : ,H : ,M : ,S">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-product_info">
+                                        <a href="product-detail.html"
+                                            class="name-product lh-24 fw-medium link-underline-text">
+                                            JVC Wireless Headphones with Bluetooth 5.2, Microphone
+                                        </a>
+                                        <div class="star-wrap d-flex align-items-center">
+                                            <i class="icon icon-Star"></i>
+                                            <i class="icon icon-Star"></i>
+                                            <i class="icon icon-Star"></i>
+                                            <i class="icon icon-Star"></i>
+                                            <i class="icon icon-Star"></i>
+                                        </div>
+                                        <div class="price-wrap">
+                                            <span class="price-new text-primary fw-semibold" data-product=" jvcHeadphones"></span>
+                                        </div>
+                                        <ul class="product-color_list">
+                                            <li
+                                                class="product-color-item color-swatch hover-tooltip tooltip-bot active">
+                                                <span class="tooltip color-filter">Pink</span>
+                                                <span class="swatch-value bg-rose-taupe"></span>
+                                                <img src="assets/images/product/product-4.jpg"
+                                                    data-src="assets/images/product/product-4.jpg" alt="Image">
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sw-dot-default tf-sw-pagination"></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+ <div class="offcanvas offcanvas-end popup-shopping-cart" id="shoppingCart">
+
+    <!-- Recommended Products Section -->
+    <div class="tf-minicart-recommendations file-delete">
+        <div class="title d-flex justify-content-between align-items-center">
+            <h5>You Might Like</h5>
+            <i class="icon icon-X2 link remove fs-24 cs-pointer"></i>
         </div>
 
+        <div class="wrap-recommendations">
+            <div class="list-cart">
+                <!-- keep your recommendation products here if needed -->
+            </div>
+        </div>
     </div>
 
+    <div class="canvas-wrapper">
+
+        <!-- Header -->
+        <div class="popup-header">
+            <div class="cart-threshold">
+                <p class="text">
+                    Buy
+                    <span class="text-primary fw-7">$70.00</span>
+                    more to get freeship
+                </p>
+
+                <div class="tf-progress-bar tf-progress-ship">
+                    <div class="value" style="width:0%" data-progress="25"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cart Items Section -->
+        <div class="wrap">
+            <div class="tf-mini-cart-wrap wrap-empty_text">
+
+                <div class="tf-mini-cart-main">
+                    <div class="tf-mini-cart-sroll">
+
+                        <!-- Dynamic Cart Items -->
+                        <div class="tf-mini-cart-items list-empty" id="cart-items-container">
+
+                            <!-- Empty Cart Message -->
+                            <div class="box-text_empty type-shop_cart" id="empty-cart-message">
+                                <div class="shop-empty_top">
+                                    <span class="icon">
+                                        <i class="icon-Handbag"></i>
+                                    </span>
+
+                                    <h4 class="text-emp">Your cart is empty</h4>
+
+                                    <p class="cl-text-2">
+                                        Your cart is currently empty.
+                                        Let us assist you in finding the right product
+                                    </p>
+                                </div>
+
+                                <div class="shop-empty_bot">
+                                    <a href="shop-default.html" class="tf-btn animate-btn">
+                                        Shopping
+                                    </a>
+
+                                    <a href="index.html" class="tf-btn btn-stroke">
+                                        Back to home
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bottom Section -->
+                <div class="tf-mini-cart-bottom box-empty_clear">
+
+                    <!-- Total -->
+                    <div class="tf-mini-cart-bottom-wrap">
+                        <div class="tf-mini-cart-total">
+                            <h5 class="text-total d-flex align-content-center justify-content-between">
+                                <span class="subtotal">Subtotal</span>
+                                <span class="total-price tf-totals-total-value">$0.00</span>
+                            </h5>
+                        </div>
+
+                        <!-- Terms -->
+                        <div class="checkbox-wrap">
+                            <input class="tf-check style-2" type="checkbox" id="agree-term">
+
+                            <label for="agree-term">
+                                I agree with
+                                <a href="term-and-condition.html"
+                                    class="text-decoration-underline">
+                                    Terms & Conditions
+                                </a>
+                            </label>
+                        </div>
+
+                        <!-- View Cart + Checkout -->
+                        <div class="tf-mini-cart-view-checkout">
+                            <a href="view-cart.html" class="tf-btn btn-stroke">
+                                View Cart
+                            </a>
+
+                            <a href="checkout.html" class="tf-btn animate-btn">
+                                Check Out
+                            </a>
+                        </div>
+
+                        <a href="shop-default.html"
+                            class="d-flex justify-content-center fw-semibold text-center link">
+                            Or Continue Shopping
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
 </div>
-<script>
-document.addEventListener("DOMContentLoaded", function () {
 
-    const productButtons =
-        document.querySelectorAll(".view-product-btn");
-
-    productButtons.forEach(button => {
-
-        button.addEventListener("click", function () {
-
-            const product = {
-
-                name: this.dataset.name,
-
-                price: this.dataset.price,
-
-                image: this.dataset.image
-
-            };
-
-            localStorage.setItem(
-                "selectedProduct",
-                JSON.stringify(product)
-            );
-        });
-
-    });
-
-});
-</script>
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-
-    // Get saved product
-    const product =
-        JSON.parse(localStorage.getItem("selectedProduct"));
-
-    // Check product exists
-    if(product){
-
-        // Show image
-        document.getElementById("detail-image").setAttribute(
-    "src",
-    product.image
-);
-
-        // Show name
-        document.getElementById("detail-name").innerText =
-            product.name;
-
-        // Show price
-        document.getElementById("detail-price").innerText =
-            "Rs." + product.price;
-
-        // Add to cart button
-        const addCartBtn =
-            document.getElementById("detail-add-cart");
-
-        addCartBtn.addEventListener("click", function () {
-
-            let cart =
-                JSON.parse(localStorage.getItem("cartItems")) || [];
-
-            const existingProduct = cart.find(
-                item => item.name === product.name
-            );
-
-            if(existingProduct){
-
-                existingProduct.quantity += 1;
-
-            }else{
-
-                cart.push({
-                    name: product.name,
-                    price: 1000,
-                    image: product.image,
-                    quantity: 1
-                });
-            }
-
-            localStorage.setItem(
-                "cartItems",
-                JSON.stringify(cart)
-            );
-
-            alert("Product added to cart!");
-        });
-
-    }
-
-});
-</script>
+    <script src="assets/js/plugin/bootstrap.min.js"></script>
+    <script src="assets/js/plugin/jquery.min.js"></script>
+    <script src="assets/js/plugin/swiper-bundle.min.js"></script>
+    <script src="assets/js/plugin/bootstrap-select.min.js"></script>
+    <script src="assets/js/plugin/count-down.js"></script>
+    <script src="assets/js/carousel.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/data/catalog.js"></script>
+    <script src="assets/js/catalog-render.js"></script>
 </body>
-
 
 </html>

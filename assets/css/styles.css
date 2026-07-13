@@ -20896,3 +20896,32 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle {
 }
 
 /*# sourceMappingURL=styles.css.map */
+
+/* Hide cart-drawer free-shipping threshold bar (temporary) */
+.cart-threshold { display: none !important; }
+
+/* Remove Account item from mobile bottom toolbar */
+.tf-toolbar-bottom .toolbar-item:has(a[href="account-page.html"]) { display: none !important; }
+
+/* Search popup: keep only category + search */
+.modal-search .search-feature,
+.modal-search .recently-view { display: none !important; }
+
+/* Mobile search (search popup + left mobile menu): category select on its own
+   row, search bar (input + button) stacked below it. */
+.modal-search .form-search-nav,
+#mobileMenu .form-search-nav {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 10px; width: 100%;
+}
+.modal-search .form-search-nav .mobile-cate,
+#mobileMenu .form-search-nav .mobile-cate {
+  flex: 1 1 100%; width: 100%; max-width: none; height: 44px;
+  border: 1px solid var(--line, #e5e5e5); border-radius: 12px;
+  padding: 0 12px; background: #fff; color: var(--text, #101010); font-size: 14px;
+}
+.modal-search .form-search-nav fieldset,
+#mobileMenu .form-search-nav fieldset { flex: 1 1 auto; min-width: 0; position: relative; }
+.modal-search .form-search-nav fieldset input,
+#mobileMenu .form-search-nav fieldset input { width: 100%; padding-left: 15px; padding-right: 15px; }
+.modal-search .form-search-nav .btn-action,
+#mobileMenu .form-search-nav .btn-action { position: static; transform: none; flex: 0 0 auto; }

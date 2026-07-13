@@ -10,11 +10,12 @@
 
             var min = parseInt(skipSlider.getAttribute("data-min"), 10) || 0;
             var max = parseInt(skipSlider.getAttribute("data-max"), 10) || 500;
+            var step = parseInt(skipSlider.getAttribute("data-step"), 10) || 1;
 
             noUiSlider.create(skipSlider, {
                 start: [min, max],
                 connect: true,
-                step: 1,
+                step: step,
                 range: {
                     min: min,
                     max: max,
@@ -30,7 +31,7 @@
             });
 
             skipSlider.noUiSlider.on("update", function (val, e) {
-                skipValues[e].innerText = val[e];
+                skipValues[e].innerText = Number(val[e]).toLocaleString("en-US");
             });
         }
     };
@@ -57,8 +58,8 @@
             filters.minPrice = parseInt(values[0], 10);
             filters.maxPrice = parseInt(values[1], 10);
 
-            $("#price-min-value").text(filters.minPrice);
-            $("#price-max-value").text(filters.maxPrice);
+            $("#price-min-value").text(Number(filters.minPrice).toLocaleString("en-US"));
+            $("#price-max-value").text(Number(filters.maxPrice).toLocaleString("en-US"));
 
             applyFilters();
             updateMetaFilter();
@@ -100,19 +101,56 @@
             updateMetaFilter();
             updatePagination();
         });
+        // Track the currently-selected radio per group so clicking it again deselects it.
+        let selectedAvailability = null;
+        let selectedBrand = null;
+
         $('input[name="availability"]').on("change", function () {
-            filters.availability = $(this).attr("id") === "inStock" ? "In Stock" : "Out of stock";
+            if (this.checked) {
+                selectedAvailability = this.id;
+                filters.availability = this.id === "inStock" ? "In Stock" : "Out of stock";
+            } else {
+                selectedAvailability = null;
+                filters.availability = null;
+            }
             applyFilters();
             updateMetaFilter();
             updatePagination();
         });
+        // Radios can't be unchecked natively — clicking the selected one clears it.
+        $('input[name="availability"]').on("click", function () {
+            if (this.id === selectedAvailability) {
+                this.checked = false;
+                selectedAvailability = null;
+                filters.availability = null;
+                applyFilters();
+                updateMetaFilter();
+                updatePagination();
+            }
+        });
+
         $('input[name="brand"]').on("change", function () {
-            const brandId = $(this).attr("id");
-            const label = $(`label[for="${brandId}"]`);
-            filters.brand = label.find(".brand-text").text().trim();
+            if (this.checked) {
+                selectedBrand = this.id;
+                const label = $(`label[for="${this.id}"]`);
+                filters.brand = label.find(".brand-text").text().trim();
+            } else {
+                selectedBrand = null;
+                filters.brand = null;
+            }
             applyFilters();
             updateMetaFilter();
             updatePagination();
+        });
+        $('input[name="brand"]').on("click", function () {
+            if (this.id === selectedBrand) {
+                this.checked = false;
+                selectedBrand = null;
+                filters.brand = null;
+                applyFilters();
+                updateMetaFilter();
+                updatePagination();
+            }
         });
 
         function updatePagination() {
@@ -192,10 +230,12 @@
             }
             if (filterType === "availability") {
                 filters.availability = null;
+                selectedAvailability = null;
                 $('input[name="availability"]').prop("checked", false);
             }
             if (filterType === "brand") {
                 filters.brand = null;
+                selectedBrand = null;
                 $('input[name="brand"]').prop("checked", false);
             }
 
@@ -213,6 +253,8 @@
             filters.size = [];
             filters.color = null;
             filters.brand = null;
+            selectedAvailability = null;
+            selectedBrand = null;
 
             priceSlider.noUiSlider.set([minPrice, maxPrice]);
             $('input[name="category"]').prop("checked", false);
@@ -247,8 +289,10 @@
                 const product = $(this);
                 let showProduct = true;
 
-                const priceText = product.find(".price-new").text().replace("$", "");
-                const price = parseFloat(priceText);
+                let price = parseFloat(product.attr("data-price"));
+                if (isNaN(price)) {
+                    price = parseFloat(product.find(".price-new").text().replace(/[^0-9.]/g, ""));
+                }
 
                 if (price < filters.minPrice || price > filters.maxPrice) {
                     showProduct = false;
@@ -374,16 +418,15 @@
                 return;
             }
 
+            const priceOf = (el) => {
+                let v = parseFloat($(el).attr("data-price"));
+                if (isNaN(v)) v = parseFloat($(el).find(".price-new").text().replace(/[^0-9.]/g, ""));
+                return isNaN(v) ? 0 : v;
+            };
             if (sortValue === "price-low-high") {
-                products.sort(
-                    (a, b) =>
-                        parseFloat($(a).find(".price-new").text().replace("$", "")) - parseFloat($(b).find(".price-new").text().replace("$", ""))
-                );
+                products.sort((a, b) => priceOf(a) - priceOf(b));
             } else if (sortValue === "price-high-low") {
-                products.sort(
-                    (a, b) =>
-                        parseFloat($(b).find(".price-new").text().replace("$", "")) - parseFloat($(a).find(".price-new").text().replace("$", ""))
-                );
+                products.sort((a, b) => priceOf(b) - priceOf(a));
             } else if (sortValue === "a-z") {
                 products.sort((a, b) => $(a).find(".name-product").text().localeCompare($(b).find(".name-product").text()));
             } else if (sortValue === "z-a") {
@@ -781,7 +824,12 @@
     }
 
 
-    $(function () {
+    // Exposed so the catalog renderer can initialize the shop AFTER products
+    // are injected from catalog.json (data arrives async via fetch).
+    var shopInitialized = false;
+    window.initShopPlugins = function () {
+        if (shopInitialized) return;
+        shopInitialized = true;
         rangeTwoPrice();
         filterProducts();
         filterSort();
@@ -789,5 +837,13 @@
         handleDropdownFilter();
         swLayoutShop();
         limitLayout();
+    };
+
+    // Fallback: if the catalog renderer isn't present (or failed to signal),
+    // initialize on ready against whatever markup exists.
+    $(function () {
+        if (!window.__catalogWillInitShop) {
+            window.initShopPlugins();
+        }
     });
 })(jQuery);

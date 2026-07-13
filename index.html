@@ -74,90 +74,8 @@
         </div>
         <!-- /Topbar -->
         <!-- Header -->
-        <header class="tf-header header-s3 has-by-category">
-            <div class="br-line fake-class bottom-0 d-xl-none"></div>
-            <div class="header-inner_wrap">
-                <div class="container-full">
-                    <div class="header-inner">
-                        <div class="box-open-menu-mobile d-xl-none">
-                            <a href="#mobileMenu" data-bs-toggle="offcanvas" class="btn-open-menu">
-                                <i class="icon icon-List"></i>
-                            </a>
-                        </div>
-                        <div class="box-open-header-bottom">
-                            <div class="btn-open-header-bottom cs-pointer">
-                                <i class="icon icon-List fs-24"></i>
-                            </div>
-                        </div>
-                        <div class="header-left">
-                            <a href="index.html" class="logo-site">
-                                <img loading="lazy" width="150" height="30" src="assets/images/logo/logo.svg" alt="AXON MOBILE">
-                            </a>
-                        </div>
-                        <div class="header-center d-none d-xl-block">
-                            <form action="search-result.html" class="form_search-product">
-                                <div class="select-category">
-                                    <select name="product_cate" id="product_cate" class="dropdown_product_cate">
-                                        <option value="" selected="selected">All Categories</option>
-                                        <option class="level-0" value="skincare">Skincare</option>
-                                        <option class="level-0" value="makeup">Makeup</option>
-                                        <option class="level-0" value="haircare">Haircare</option>
-                                        <option class="level-0" value="body-care">Body care</option>
-                                        <option class="level-0" value="fragrances">Fragrances</option>
-                                        <option class="level-0" value="lip-care">Lip care</option>
-                                        <option class="level-0" value="nail-care">Nail care</option>
-                                        <option class="level-0" value="beauty-tools-accessories">Beauty tools &
-                                            accessories
-                                        </option>
-                                        <option class="level-0" value="natural-beauty">Natural beauty</option>
-                                        <option class="level-0" value="baby-kids-care">Baby & Kids Care</option>
-                                        <option class="level-0" value="eye-care">Eye care</option>
-                                    </select>
-                                </div>
-                                <span class="br-line type-vertical"></span>
-                                <fieldset class="fieldset-search">
-                                    <input class="ipt" type="text" placeholder="Search Products" required>
-                                    <button type="submit" class="btn-action">
-                                        <i class="icon icon-MagnifyingGlass"></i>
-                                    </button>
-                                </fieldset>
-                            </form>
-                        </div>
-                        <div class="header-right">
-                            <ul class="nav-icon-list">
-                                <li class="d-none d-sm-block d-xl-none">
-                                    <a href="#search" data-bs-toggle="modal" class="nav-icon-item link">
-                                        <i class="icon icon-MagnifyingGlass"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#sign" data-bs-toggle="modal" class="nav-icon-item link has-text">
-                                        <i class="icon icon-User"></i>
-                                        <span class="d-none d-xl-block">
-                                            Login/Register
-                                        </span>
-                                    </a>
-                                </li>
-                                <li class="d-none d-sm-block">
-                                    <a href="wishlist.html" class="nav-icon-item link">
-                                        <i class="icon icon-HeartStraight"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#shoppingCart" data-bs-toggle="offcanvas"
-                                        class="nav-icon-item link shop-cart">
-                                        <i class="icon icon-Handbag"></i>
-                                        <span class="count">
-                                            12
-                                        </span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </header>
+        <div id="site-header"></div>
+    <script src="assets/js/site-header.js"></script>
         <!-- /Header -->
         <!-- Category -->
         <section class="py-30">
@@ -165,7 +83,7 @@
                 <div dir="ltr" class="swiper tf-swiper" data-laptop="8" data-preview="6" data-tablet="4"
                     data-mobile-sm="3" data-mobile="2" data-space-lg="20" data-space-md="15" data-space="10"
                     data-pagination="2" data-pagination-sm="3" data-pagination-md="4" data-pagination-lg="8">
-                    <div class="swiper-wrapper">
+                    <div class="swiper-wrapper" id="categoryWrapper">
                         <!-- slide 1 -->
                         <div class="swiper-slide">
                             <a href="shop-default.html" class="category-v02 style-3 hover-img wow fadeInUp">
@@ -467,7 +385,7 @@
                         <div dir="ltr" class="swiper tf-swiper wrap-sw-over" data-preview="4" data-tablet="3"
                             data-mobile-sm="2" data-mobile="2" data-space-lg="30" data-space-md="15" data-space="10"
                             data-pagination="2" data-pagination-sm="2" data-pagination-md="3" data-pagination-lg="4">
-                            <div class="swiper-wrapper">
+                            <div class="swiper-wrapper" id="bestSellerWrapper">
                                 <!-- slide 1 -->
                                 <div class="swiper-slide">
                                     <div class="card-product wow fadeInUp">
@@ -485,20 +403,8 @@
                                                         <span class="tooltip">Add to Wishlist</span>
                                                     </a>
                                                 </li>
-                                                <li class="compare">
-                                                    <a href="#compare" data-bs-toggle="offcanvas"
-                                                        class="hover-tooltip tooltip-left box-icon">
-                                                        <span class="icon icon-ArrowsLeftRight"></span>
-                                                        <span class="tooltip">Compare</span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#quickView" data-bs-toggle="offcanvas"
-                                                        class="hover-tooltip tooltip-left box-icon">
-                                                        <span class="icon icon-Eye"></span>
-                                                        <span class="tooltip">Quick view</span>
-                                                    </a>
-                                                </li>
+                                                
+                                                
                                             </ul>
                                             <div class="product-action_bot">
                                             <a href="#shoppingCart"
@@ -546,20 +452,8 @@
                                                         <span class="tooltip">Add to Wishlist</span>
                                                     </a>
                                                 </li>
-                                                <li class="compare">
-                                                    <a href="#compare" data-bs-toggle="offcanvas"
-                                                        class="hover-tooltip tooltip-left box-icon">
-                                                        <span class="icon icon-ArrowsLeftRight"></span>
-                                                        <span class="tooltip">Compare</span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#quickView" data-bs-toggle="offcanvas"
-                                                        class="hover-tooltip tooltip-left box-icon">
-                                                        <span class="icon icon-Eye"></span>
-                                                        <span class="tooltip">Quick view</span>
-                                                    </a>
-                                                </li>
+                                                
+                                                
                                             </ul>
                                            
                                             <div class="product-action_bot">
@@ -607,20 +501,8 @@
                                                         <span class="tooltip">Add to Wishlist</span>
                                                     </a>
                                                 </li>
-                                                <li class="compare">
-                                                    <a href="#compare" data-bs-toggle="offcanvas"
-                                                        class="hover-tooltip tooltip-left box-icon">
-                                                        <span class="icon icon-ArrowsLeftRight"></span>
-                                                        <span class="tooltip">Compare</span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#quickView" data-bs-toggle="offcanvas"
-                                                        class="hover-tooltip tooltip-left box-icon">
-                                                        <span class="icon icon-Eye"></span>
-                                                        <span class="tooltip">Quick view</span>
-                                                    </a>
-                                                </li>
+                                                
+                                                
                                             </ul>
                                             <ul class="product-badge_list">
                                                 <li class="product-badge_item text-caption-01 new">NEW</li>
@@ -674,20 +556,8 @@
                                                         <span class="tooltip">Add to Wishlist</span>
                                                     </a>
                                                 </li>
-                                                <li class="compare">
-                                                    <a href="#compare" data-bs-toggle="offcanvas"
-                                                        class="hover-tooltip tooltip-left box-icon">
-                                                        <span class="icon icon-ArrowsLeftRight"></span>
-                                                        <span class="tooltip">Compare</span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#quickView" data-bs-toggle="offcanvas"
-                                                        class="hover-tooltip tooltip-left box-icon">
-                                                        <span class="icon icon-Eye"></span>
-                                                        <span class="tooltip">Quick view</span>
-                                                    </a>
-                                                </li>
+                                                
+                                                
                                             </ul>
                                             <ul class="product-badge_list">
                                                 <li class="product-badge_item text-caption-01 sale">-25%</li>
@@ -898,6 +768,7 @@
         </section>
         <!-- /Product Thumbs -->
         <!-- Gear Bundle -->
+        <!-- Personalize Your Own Gear Bundle — commented out
         <section class="section-gear-bundle flat-spacing">
             <div class="container">
                 <div class="sect-heading type-2 has-col-right wow fadeInUp">
@@ -929,7 +800,7 @@
                                     data-space="10" data-pagination="2" data-pagination-sm="2" data-pagination-md="3"
                                     data-pagination-lg="3">
                                     <div class="swiper-wrapper">
-                                        <!-- slide 1 -->
+                                        slide 1
                                         <div class="swiper-slide">
                                             <div class="tf-list vertical wow fadeInUp gap-lg-30">
                                                 <div class="card-product">
@@ -952,20 +823,8 @@
                                                                     <span class="tooltip">Add to Wishlist</span>
                                                                 </a>
                                                             </li>
-                                                            <li class="compare">
-                                                                <a href="#compare" data-bs-toggle="offcanvas"
-                                                                    class="hover-tooltip tooltip-left box-icon">
-                                                                    <span class="icon icon-ArrowsLeftRight"></span>
-                                                                    <span class="tooltip">Compare</span>
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#quickView" data-bs-toggle="offcanvas"
-                                                                    class="hover-tooltip tooltip-left box-icon">
-                                                                    <span class="icon icon-Eye"></span>
-                                                                    <span class="tooltip">Quick view</span>
-                                                                </a>
-                                                            </li>
+                                                            
+                                                            
                                                         </ul>
                                                         <div class="product-action_bot">
                                                            <a href="#shoppingCart"
@@ -1017,20 +876,8 @@
                                                                     <span class="tooltip">Add to Wishlist</span>
                                                                 </a>
                                                             </li>
-                                                            <li class="compare">
-                                                                <a href="#compare" data-bs-toggle="offcanvas"
-                                                                    class="hover-tooltip tooltip-left box-icon">
-                                                                    <span class="icon icon-ArrowsLeftRight"></span>
-                                                                    <span class="tooltip">Compare</span>
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#quickView" data-bs-toggle="offcanvas"
-                                                                    class="hover-tooltip tooltip-left box-icon">
-                                                                    <span class="icon icon-Eye"></span>
-                                                                    <span class="tooltip">Quick view</span>
-                                                                </a>
-                                                            </li>
+                                                            
+                                                            
                                                         </ul>
                                                         <div class="product-action_bot">
                                                             <a href="#shoppingCart"
@@ -1064,7 +911,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- slide 2 -->
+                                        slide 2
                                         <div class="swiper-slide">
                                             <div class="tf-list vertical wow fadeInUp gap-30">
                                                 <div class="card-product">
@@ -1087,20 +934,8 @@
                                                                     <span class="tooltip">Add to Wishlist</span>
                                                                 </a>
                                                             </li>
-                                                            <li class="compare">
-                                                                <a href="#compare" data-bs-toggle="offcanvas"
-                                                                    class="hover-tooltip tooltip-left box-icon">
-                                                                    <span class="icon icon-ArrowsLeftRight"></span>
-                                                                    <span class="tooltip">Compare</span>
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#quickView" data-bs-toggle="offcanvas"
-                                                                    class="hover-tooltip tooltip-left box-icon">
-                                                                    <span class="icon icon-Eye"></span>
-                                                                    <span class="tooltip">Quick view</span>
-                                                                </a>
-                                                            </li>
+                                                            
+                                                            
                                                         </ul>
                                                         <div class="product-action_bot">
                                                             <a href="#shoppingCart"
@@ -1152,20 +987,8 @@
                                                                     <span class="tooltip">Add to Wishlist</span>
                                                                 </a>
                                                             </li>
-                                                            <li class="compare">
-                                                                <a href="#compare" data-bs-toggle="offcanvas"
-                                                                    class="hover-tooltip tooltip-left box-icon">
-                                                                    <span class="icon icon-ArrowsLeftRight"></span>
-                                                                    <span class="tooltip">Compare</span>
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#quickView" data-bs-toggle="offcanvas"
-                                                                    class="hover-tooltip tooltip-left box-icon">
-                                                                    <span class="icon icon-Eye"></span>
-                                                                    <span class="tooltip">Quick view</span>
-                                                                </a>
-                                                            </li>
+                                                            
+                                                            
                                                         </ul>
                                                         <div class="product-action_bot">
                                                             <a href="#shoppingCart"
@@ -1196,7 +1019,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- slide 3 -->
+                                        slide 3
                                         <div class="swiper-slide">
                                             <div class="tf-list vertical wow fadeInUp gap-30">
                                                 <div class="card-product">
@@ -1219,20 +1042,8 @@
                                                                     <span class="tooltip">Add to Wishlist</span>
                                                                 </a>
                                                             </li>
-                                                            <li class="compare">
-                                                                <a href="#compare" data-bs-toggle="offcanvas"
-                                                                    class="hover-tooltip tooltip-left box-icon">
-                                                                    <span class="icon icon-ArrowsLeftRight"></span>
-                                                                    <span class="tooltip">Compare</span>
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#quickView" data-bs-toggle="offcanvas"
-                                                                    class="hover-tooltip tooltip-left box-icon">
-                                                                    <span class="icon icon-Eye"></span>
-                                                                    <span class="tooltip">Quick view</span>
-                                                                </a>
-                                                            </li>
+                                                            
+                                                            
                                                         </ul>
                                                         <div class="product-action_bot">
                                                             <a href="#shoppingCart"
@@ -1285,20 +1096,8 @@
                                                                     <span class="tooltip">Add to Wishlist</span>
                                                                 </a>
                                                             </li>
-                                                            <li class="compare">
-                                                                <a href="#compare" data-bs-toggle="offcanvas"
-                                                                    class="hover-tooltip tooltip-left box-icon">
-                                                                    <span class="icon icon-ArrowsLeftRight"></span>
-                                                                    <span class="tooltip">Compare</span>
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#quickView" data-bs-toggle="offcanvas"
-                                                                    class="hover-tooltip tooltip-left box-icon">
-                                                                    <span class="icon icon-Eye"></span>
-                                                                    <span class="tooltip">Quick view</span>
-                                                                </a>
-                                                            </li>
+                                                            
+                                                            
                                                         </ul>
                                                         <div class="product-action_bot">
                                                             <a href="#shoppingCart"
@@ -1479,6 +1278,7 @@
                 </div>
             </div>
         </section>
+        -->
         <!-- /Gear Bundle -->
         <!-- Banner -->
         <div class="themesFlat">
@@ -1989,10 +1789,7 @@
                                 <div class="tf-collapse-content">
                                     <ul class="footer-menu-list">
                                         <li><a href="about.html" class="cl-text-3 link">About Us</a></li>
-                                        <li><a href="our-store.html" class="cl-text-3 link">Our Stories</a></li>
-                                        <li><a href="contact.html" class="cl-text-3 link">Contact us</a></li>
-                                        <li><a href="blog.html" class="cl-text-3 link">Latest New</a></li>
-                                        <li><a href="account-page.html" class="cl-text-3 link">My Account</a></li>
+                                        <li><a href="contact.html" class="cl-text-3 link">Contact Us</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -2000,13 +1797,11 @@
                                 <p class="footer-heading footer-heading-mobile text-white">CUSTOMER</p>
                                 <div class="tf-collapse-content">
                                     <ul class="footer-menu-list">
-                                        <li><a href="shipping.html" class="cl-text-3 link">Shipping</a></li>
-                                        <li><a href="return-and-refund.html" class="cl-text-3 link">Return & Refund</a>
-                                        </li>
                                         <li><a href="privacy-policy.html" class="cl-text-3 link">Privacy Policy</a></li>
                                         <li><a href="term-and-condition.html" class="cl-text-3 link">Terms &
                                                 Conditions</a></li>
-                                        <li><a href="faq.html" class="cl-text-3 link">Orders FAQs</a></li>
+                                        <li><a href="wishlist.html" class="cl-text-3 link">Wishlist</a></li>
+                                        <li><a href="view-cart.html" class="cl-text-3 link">View Cart</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -2052,25 +1847,7 @@
                 <div class="container">
                     <div class="inner-bottom position-relative">
                         <div class="br-line fake-class bg-white_10 top-0"></div>
-                        <div class="tf-list list-currenci">
-                            <div class="tf-currencies">
-                                <select class="tf-dropdown-select style-default color-white type-currencies">
-                                    <option selected data-thumbnail="assets/images/country/us.png">United States
-                                        (USD $)
-                                    </option>
-                                    <option data-thumbnail="assets/images/country/vn.png">Viet Nam (VND ₫)</option>
-                                </select>
-                            </div>
-                            <div class="tf-languages">
-                                <select class="tf-dropdown-select style-default color-white type-languages">
-                                    <option>English</option>
-                                    <option>العربية</option>
-                                    <option>简体中文</option>
-                                    <option>اردو</option>
-                                </select>
-                            </div>
-                        </div>
-                        <p class="text-nocopy cl-text-2">
+                        <p class="text-nocopy cl-text-2 me-auto text-start">
                             ©2026 AXON MOBILE. All Rights Reserved.
                         </p>
                         <ul class="tf-list payment-list">
@@ -2951,20 +2728,8 @@
                                                     <span class="tooltip">Add to Wishlist</span>
                                                 </a>
                                             </li>
-                                            <li class="compare">
-                                                <a href="#compare" data-bs-toggle="offcanvas"
-                                                    class="hover-tooltip tooltip-left box-icon">
-                                                    <span class="icon icon-ArrowsLeftRight"></span>
-                                                    <span class="tooltip">Compare</span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#quickView" data-bs-toggle="offcanvas"
-                                                    class="hover-tooltip tooltip-left box-icon">
-                                                    <span class="icon icon-Eye"></span>
-                                                    <span class="tooltip">Quick view</span>
-                                                </a>
-                                            </li>
+                                            
+                                            
                                         </ul>
                                         <div class="product-action_bot">
                                       <a href="#shoppingCart"
@@ -3010,20 +2775,8 @@
                                                     <span class="tooltip">Add to Wishlist</span>
                                                 </a>
                                             </li>
-                                            <li class="compare">
-                                                <a href="#compare" data-bs-toggle="offcanvas"
-                                                    class="hover-tooltip tooltip-left box-icon">
-                                                    <span class="icon icon-ArrowsLeftRight"></span>
-                                                    <span class="tooltip">Compare</span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#quickView" data-bs-toggle="offcanvas"
-                                                    class="hover-tooltip tooltip-left box-icon">
-                                                    <span class="icon icon-Eye"></span>
-                                                    <span class="tooltip">Quick view</span>
-                                                </a>
-                                            </li>
+                                            
+                                            
                                         </ul>
                                         <ul class="product-badge_list">
                                             <li class="product-badge_item text-caption-01 sale">-25%</li>
@@ -3105,20 +2858,8 @@
                                                     <span class="tooltip">Add to Wishlist</span>
                                                 </a>
                                             </li>
-                                            <li class="compare">
-                                                <a href="#compare" data-bs-toggle="offcanvas"
-                                                    class="hover-tooltip tooltip-left box-icon">
-                                                    <span class="icon icon-ArrowsLeftRight"></span>
-                                                    <span class="tooltip">Compare</span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#quickView" data-bs-toggle="offcanvas"
-                                                    class="hover-tooltip tooltip-left box-icon">
-                                                    <span class="icon icon-Eye"></span>
-                                                    <span class="tooltip">Quick view</span>
-                                                </a>
-                                            </li>
+                                            
+                                            
                                         </ul>
                                         <ul class="product-badge_list">
                                             <li class="product-badge_item text-caption-01 new">NEW</li>
@@ -3172,20 +2913,8 @@
                                                     <span class="tooltip">Add to Wishlist</span>
                                                 </a>
                                             </li>
-                                            <li class="compare">
-                                                <a href="#compare" data-bs-toggle="offcanvas"
-                                                    class="hover-tooltip tooltip-left box-icon">
-                                                    <span class="icon icon-ArrowsLeftRight"></span>
-                                                    <span class="tooltip">Compare</span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#quickView" data-bs-toggle="offcanvas"
-                                                    class="hover-tooltip tooltip-left box-icon">
-                                                    <span class="icon icon-Eye"></span>
-                                                    <span class="tooltip">Quick view</span>
-                                                </a>
-                                            </li>
+                                            
+                                            
                                         </ul>
                                         <ul class="product-badge_list">
                                             <li class="product-badge_item text-caption-01 sale">-25%</li>
@@ -3352,235 +3081,8 @@
 
     <script src="assets/js/carousel.js"></script>
     <script src="assets/js/main.js"></script>
-    <script src="assets/js/product.js"></script>
-   <script>
-document.addEventListener("DOMContentLoaded", function () {
-
-    const cartButtons = document.querySelectorAll(".add-to-cart-btn");
-
-    // =========================
-    // ADD TO CART
-    // =========================
-    cartButtons.forEach(button => {
-
-        button.addEventListener("click", function (e) {
-
-            e.preventDefault();
-
-            // GET PRODUCT KEY
-            const productKey = this.dataset.product;
-
-            console.log("Product Key:", productKey);
-
-            // CHECK PRODUCTS OBJECT
-            if (typeof products === "undefined") {
-                console.error("products.js not loaded!");
-                return;
-            }
-
-            // GET PRODUCT FROM JSON
-            const selectedProduct = products[productKey];
-
-            console.log("Selected Product:", selectedProduct);
-
-            // PRODUCT NOT FOUND
-            if (!selectedProduct) {
-                console.error("Product not found!");
-                return;
-            }
-
-            // CREATE PRODUCT OBJECT
-            const product = {
-                id: selectedProduct.id,
-                name: selectedProduct.name,
-                price: Number(selectedProduct.price),
-                image: selectedProduct.image,
-                quantity: 1
-            };
-
-            // GET CART
-            let cart = JSON.parse(localStorage.getItem("cartItems")) || [];
-
-            // CHECK EXISTING PRODUCT
-            const existingProduct = cart.find(
-                item => item.id === product.id
-            );
-
-            // UPDATE QUANTITY
-            if (existingProduct) {
-
-                existingProduct.quantity += 1;
-
-            } else {
-
-                cart.push(product);
-
-            }
-
-            // SAVE CART
-            localStorage.setItem("cartItems", JSON.stringify(cart));
-
-            // RENDER CART
-            renderCart(cart);
-
-            console.log("Updated Cart:", cart);
-
-        });
-
-    });
-
-
-    // =========================
-    // RENDER CART
-    // =========================
-    function renderCart(cart) {
-
-        const cartContainer = document.getElementById("cart-items-container");
-
-        const totalValue = document.querySelector(".tf-totals-total-value");
-
-        const cartCount = document.querySelector(".count");
-
-        if (!cartContainer) {
-            console.error("Cart container not found!");
-            return;
-        }
-
-        // CLEAR CART
-        cartContainer.innerHTML = "";
-
-        let subtotal = 0;
-        let totalItems = 0;
-
-        // EMPTY CART
-        if (cart.length === 0) {
-
-            cartContainer.innerHTML = `
-                <div class="box-text_empty type-shop_cart">
-                    <h4>Your cart is empty</h4>
-                </div>
-            `;
-
-            if (totalValue) {
-                totalValue.innerText = "Rs. 0.00";
-            }
-
-            if (cartCount) {
-                cartCount.innerText = "0";
-            }
-
-            return;
-        }
-
-        // RENDER ITEMS
-        cart.forEach((product, index) => {
-
-            const itemPrice = Number(product.price);
-
-            const itemTotal = itemPrice * product.quantity;
-
-            subtotal += itemTotal;
-
-            totalItems += product.quantity;
-
-            cartContainer.innerHTML += `
-
-                <div class="tf-mini-cart-item">
-
-                    <div class="tf-mini-cart-image">
-                        <img src="${product.image}" width="80" alt="${product.name}">
-                    </div>
-
-                    <div class="tf-mini-cart-info">
-
-                        <a href="#"
-                           class="name fw-medium link text-line-clamp-1">
-
-                            ${product.name}
-
-                        </a>
-
-                        <div class="fw-medium d-flex align-items-center gap-2">
-
-                            <span>${product.quantity}</span>
-
-                            <span>x</span>
-
-                            <span class="price text-primary">
-                                Rs. ${itemPrice.toFixed(2)}
-                            </span>
-
-                        </div>
-
-                    </div>
-
-                    <div class="tf-mini-cart-price">
-
-                        <div class="remove-cart-item cs-pointer"
-                             data-index="${index}">
-
-                            Remove
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            `;
-        });
-
-        // UPDATE TOTAL
-        if (totalValue) {
-            totalValue.innerText = `Rs. ${subtotal.toFixed(2)}`;
-        }
-
-        // UPDATE COUNT
-        if (cartCount) {
-            cartCount.innerText = totalItems;
-        }
-
-        // =========================
-        // REMOVE ITEM
-        // =========================
-        document.querySelectorAll(".remove-cart-item").forEach(btn => {
-
-            btn.addEventListener("click", function () {
-
-                let cart = JSON.parse(localStorage.getItem("cartItems")) || [];
-
-                const index = this.dataset.index;
-
-                cart.splice(index, 1);
-
-                localStorage.setItem("cartItems", JSON.stringify(cart));
-
-                renderCart(cart);
-
-            });
-
-        });
-
-    }
-
-  document.querySelectorAll(".price-new").forEach(el => {
-
-        const key = el.getAttribute("data-product");
-
-        if (key && products[key]) {
-            el.textContent = "Rs." + products[key].price;
-        }
-
-    });
-    // =========================
-    // LOAD CART ON PAGE LOAD
-    // =========================
-    const savedCart = JSON.parse(localStorage.getItem("cartItems")) || [];
-
-    renderCart(savedCart);
-
-});
-</script>
+    <script src="assets/data/catalog.js"></script>
+    <script src="assets/js/catalog-render.js"></script>
 
 
 </body>
