@@ -20901,7 +20901,7 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle {
 .cart-threshold { display: none !important; }
 
 /* Remove Account item from mobile bottom toolbar */
-.tf-toolbar-bottom .toolbar-item:has(a[href="account-page.html"]) { display: none !important; }
+.tf-toolbar-bottom .toolbar-item:has(a[href*="account-page"]) { display: none !important; }
 
 /* Search popup: keep only category + search */
 .modal-search .search-feature,
