@@ -2245,6 +2245,11 @@ document.addEventListener("DOMContentLoaded", function () {
 <script>
 document.addEventListener("DOMContentLoaded", function () {
 
+    // ===================================================================
+    // Order placement endpoint. Place Order POSTs the full order JSON here.
+    // ===================================================================
+    var ORDER_ENDPOINT = "https://5ct754zdgi.execute-api.us-east-1.amazonaws.com/prsprod/order/place-order-email";
+
     function getCart() {
         try { return JSON.parse(localStorage.getItem("cartItems")) || []; }
         catch (e) { return []; }
@@ -2274,6 +2279,62 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         return null;
     }
+    // Assemble the full order object sent to the backend.
+    function buildOrderPayload(cart, orderNo) {
+        var items = cart.map(function (p) {
+            var price = Number(p.price) || 0;
+            var qty = Number(p.quantity) || 0;
+            return {
+                id: p.id,
+                name: p.name,
+                price: price,
+                quantity: qty,
+                image: p.image,
+                lineTotal: price * qty
+            };
+        });
+        var subtotal = items.reduce(function (s, i) { return s + i.lineTotal; }, 0);
+        var itemCount = items.reduce(function (s, i) { return s + i.quantity; }, 0);
+        return {
+            orderNumber: orderNo,
+            createdAt: new Date().toISOString(),
+            currency: "LKR",
+            paymentMethod: selectedPayment() || "Credit card",
+            customer: {
+                name: document.getElementById("customerName").value.trim(),
+                email: document.getElementById("customerEmail").value.trim(),
+                phone: document.getElementById("customerPhone").value.trim(),
+                address: document.getElementById("customerAddress").value.trim()
+            },
+            items: items,
+            itemCount: itemCount,
+            subtotal: subtotal,
+            total: subtotal
+        };
+    }
+
+    function resetCartBadges() {
+        document.querySelectorAll(".shop-cart .count, .toolbar-count")
+            .forEach(function (b) { b.innerText = "0"; });
+    }
+
+    // Show the success popup, clear the cart, then go home.
+    function orderComplete(payload) {
+        Swal.fire({
+            icon: "success",
+            title: "Order placed!",
+            html: "Thank you for your purchase.<br>Order <b>#" + payload.orderNumber + "</b>" +
+                  "<br>Payment: <b>" + payload.paymentMethod + "</b><br>Total: <b>" + money(payload.total) + "</b>",
+            confirmButtonText: "Continue shopping",
+            buttonsStyling: false,
+            customClass: { confirmButton: "tf-btn animate-btn" }
+        }).then(function () {
+            localStorage.removeItem("cartItems");
+            resetCartBadges();
+            window.location.href = "index.html";
+        });
+    }
+
     function placeOrder() {
         var cart = getCart();
         if (!cart.length) {
@@ -2285,23 +2346,42 @@ document.addEventListener("DOMContentLoaded", function () {
             Swal.fire({ icon: "warning", title: "Missing information", text: err, buttonsStyling: false, customClass: { confirmButton: "tf-btn animate-btn" } });
             return;
         }
-        var orderNo = "AX" + Date.now().toString().slice(-8);
-        var total = cartTotal();
-        var method = selectedPayment() || "Credit card";
 
+        var orderNo = "AX" + Date.now().toString().slice(-8);
+        var payload = buildOrderPayload(cart, orderNo);
+
+        console.log("AXON order payload (POSTing to " + ORDER_ENDPOINT + "):", payload);
+
+        if (placeBtn) placeBtn.disabled = true;
         Swal.fire({
-            icon: "success",
-            title: "Order placed!",
-            html: "Thank you for your purchase.<br>Order <b>#" + orderNo + "</b>" +
-                  "<br>Payment: <b>" + method + "</b><br>Total: <b>" + money(total) + "</b>",
-            confirmButtonText: "Continue shopping",
-            buttonsStyling: false,
-            customClass: { confirmButton: "tf-btn animate-btn" }
-        }).then(function () {
-            localStorage.removeItem("cartItems");
-            var badge = document.querySelector(".count");
-            if (badge) badge.innerText = "0";
-            window.location.href = "index.html";
+            title: "Placing your order…",
+            allowOutsideClick: false,
+            didOpen: function () { Swal.showLoading(); }
+        });
+
+        fetch(ORDER_ENDPOINT, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
+        })
+        .then(function (res) {
+            if (!res.ok) throw new Error("HTTP " + res.status);
+            return res.json().catch(function () { return {}; });
+        })
+        .then(function () {
+            if (placeBtn) placeBtn.disabled = false;
+            orderComplete(payload);
+        })
+        .catch(function (e) {
+            console.error("AXON: order submit failed —", e, "\nPayload:", payload);
+            if (placeBtn) placeBtn.disabled = false;
+            Swal.fire({
+                icon: "error",
+                title: "Could not place order",
+                text: "Something went wrong sending your order. Please try again.",
+                buttonsStyling: false,
+                customClass: { confirmButton: "tf-btn animate-btn" }
+            });
         });
     }
 
