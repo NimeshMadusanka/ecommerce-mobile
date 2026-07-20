@@ -2246,12 +2246,9 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener("DOMContentLoaded", function () {
 
     // ===================================================================
-    // ⚠️ TEMPORARY public test endpoint (jsonplaceholder) so you can see a
-    // successful POST in the Network tab. REPLACE this with your real backend
-    // URL before going live — otherwise order data is sent to this third-party
-    // test service. Place Order POSTs the full order JSON to this URL.
+    // Order placement endpoint. Place Order POSTs the full order JSON here.
     // ===================================================================
-    var ORDER_ENDPOINT = "https://jsonplaceholder.typicode.com/posts";
+    var ORDER_ENDPOINT = "https://5ct754zdgi.execute-api.us-east-1.amazonaws.com/prsprod/order/place-order-email";
 
     function getCart() {
         try { return JSON.parse(localStorage.getItem("cartItems")) || []; }
