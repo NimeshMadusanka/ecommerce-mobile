@@ -39,9 +39,15 @@
     return out;
   }
   function badgeHTML(p) {
-    if (!p.badge || !p.badge.text) return "";
-    return '<ul class="product-badge_list"><li class="product-badge_item text-caption-01 ' +
-      esc(p.badge.type || "new") + '">' + esc(p.badge.text) + "</li></ul>";
+    // Support a badges[] array (multiple badges, e.g. -25% + TREND) with a
+    // single-badge {type,text} fallback for older data.
+    var list = (p.badges && p.badges.length) ? p.badges : (p.badge ? [p.badge] : []);
+    list = list.filter(function (b) { return b && b.text; });
+    if (!list.length) return "";
+    return '<ul class="product-badge_list">' + list.map(function (b) {
+      return '<li class="product-badge_item text-caption-01 ' +
+        esc(b.type || "new") + '">' + esc(b.text) + "</li>";
+    }).join("") + "</ul>";
   }
   function priceHTML(p) {
     var html = '<span class="price-new text-primary fw-semibold" data-product="' +
